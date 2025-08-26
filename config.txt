@@ -1,0 +1,279 @@
+#!/bin/bash
+
+# Verificar que el script se ejecute como root
+if [ "$EUID" -ne 0 ]; then
+  echo "Este script debe ejecutarse como root."
+  exit 1
+fi
+
+# Instalar dependencias necesarias
+apt-get update
+apt-get install -y unclutter feh chromium x11-xserver-utils lightdm-gtk-greeter
+
+# POLITICAS DE CHROMIUM
+# Ruta del directorio de polÃ­ticas de grupo de Chromium
+policies_dir="/etc/chromium/policies/managed/"
+# Nombre del archivo JSON de polÃ­ticas
+policy_file="policies.json"
+# Contenido JSON para configurar la lista blanca
+whitelist_json='{
+    "URLBlocklist": ["*"],
+    "URLAllowlist": [
+        "https://biblored.gov.co",
+        "https://descubridor.banrepcultural.org/discovery/search?vid=57BDLRDC_INST:57BDLRDC_INST",
+        "https://catalogo.biblored.gov.co"
+        ],
+    "RestoreOnStartup": 4,
+    "RestoreOnStartupURLs": [
+        "https://catalogo.biblored.gov.co",
+        "https://descubridor.banrepcultural.org/discovery/search?vid=57BDLRDC_INST:57BDLRDC_INST",
+        "https://www.biblored.gov.co/afiliese-a-biblored"
+    ]
+}'
+# Comprobamos si el directorio de polÃ­ticas existe, y si no, lo creamos
+if [ ! -d "$policies_dir" ]; then
+  mkdir -p "$policies_dir"
+fi
+# Escribimos el contenido JSON en el archivo de polÃ­ticas
+echo "$whitelist_json" > "$policies_dir$policy_file"
+echo "Configuracion de politicas de Chromium lista."
+
+# LOGIN AUTOMATICO
+# Eliminar el tiempo de espera en el menu de GRUB
+sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub
+update-grub
+
+# Quitar clave de usuario catalogo
+passwd -d catalogo
+
+# Configurar LightDM para el inicio de sesiÃ³n automÃ¡tico
+LIGHTDM_CONF="/etc/lightdm/lightdm.conf"
+echo "[Seat:*]" > $LIGHTDM_CONF
+echo "autologin-user=catalogo" >> $LIGHTDM_CONF
+echo "autologin-session=openbox" >> $LIGHTDM_CONF
+echo "user-session=openbox" >> $LIGHTDM_CONF
+
+echo "ConfiguraciÃ³n completada. El usuario catalogo se iniciarÃ¡ automÃ¡ticamente en LightDM."
+
+# FONDO DE PANTALLA
+# Nombre del script que se generarÃ¡
+IMAGE_SCRIPT="/home/catalogo/fondo.sh"
+
+# URL de la imagen que se descargarÃ¡
+BACK_URL="https://biblored.gov.co/mail/BibloRed_fondo.jpg"
+
+# Directorio donde se guardarÃ¡ la imagen descargada
+IMAGE_DIR="/home/catalogo"
+BACK_PATH="$IMAGE_DIR/fondo.jpg"
+
+# Crear el directorio si no existe
+mkdir -p "$IMAGE_DIR"
+chown catalogo:catalogo "$IMAGE_DIR"
+
+# Crear el script generado
+cat <<EOL > $IMAGE_SCRIPT
+#!/bin/bash
+
+# Crear el directorio si no existe
+mkdir -p $IMAGE_DIR
+
+# Descargar la imagen
+wget -O $BACK_PATH $BACK_URL
+
+# Establecer la imagen como fondo de pantalla usando feh
+feh --bg-scale $BACK_PATH
+
+echo "La imagen se ha descargado y establecido como fondo de pantalla."
+EOL
+
+# Hacer el script generado ejecutable
+chmod +x $IMAGE_SCRIPT
+chown catalogo:catalogo $IMAGE_SCRIPT
+
+echo "El script $IMAGE_SCRIPT ha sido creado y es ejecutable."
+
+# CONFIGURACION DE OPENBOX
+# Creacion de la carpeta de openbox
+mkdir -p /home/catalogo/.config/openbox/
+chown -R catalogo:catalogo /home/catalogo/.config
+
+# Creacion del archivo de menÃº
+cat > /home/catalogo/.config/openbox/menu.xml << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+  <menu id="root-menu" label="Openbox">
+    <item label="Reiniciar">
+      <action name="Execute">
+        <command>sudo reboot</command>
+      </action>
+    </item>
+    <item label="Apagar">
+      <action name="Execute">
+        <command>sudo poweroff</command>
+      </action>
+    </item>
+    <separator />
+    <item label="Salir">
+      <action name="Exit"/>
+    </item>
+  </menu>
+</openbox_menu>
+EOF
+
+# Creacion del archivo de autostart
+cat > /home/catalogo/.config/openbox/autostart << 'EOF'
+#!/bin/bash
+exec >> /home/catalogo/autostart.log 2>&1
+
+# Evitar el apagado de la pantalla
+xset s off
+xset -dpms
+
+# Poner fondo de pantalla
+sudo feh --bg-scale /home/catalogo/fondo.jpg
+
+sudo /home/catalogo/fondo.sh
+
+# Ocultar el cursor del ratÃ³n
+unclutter -idle 0.1 -root &
+
+
+#Arborizadora Alta
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTk=&seguim=68fc92c5313d4e1c393be8017a0c22af81594aaee92b608a02e8e630efde0e4d'
+
+#Bosa
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Mg==&seguim=adaf2840df3f22c6a38d74d54d3de6dfd42fbab792f8048ec96ae6985ae922ab'
+
+#Carlos E. Restrepo
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTA=&seguim=97c8a700ab8e288af346b29d4b44606471079e383374da51371f5ec441ed1eea'
+
+#CEFE - Cometas
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjAz&seguim=4a000190a0032a11d2a6a38c1b171b696fad34de6be9906f0f2645aae0847051'
+
+#CEFE - Fontanar
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MzU=&seguim=7a9b0eef15fbeee65e601513f9ff35593ccd01b9fe1c6c0f6b5bb6c48efdaaff'
+
+#El Campin
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjE=&seguim=ee04e2d7157e3ab42e94db68851e039763890e373c9c469ab44c8edd1e70ef8d'
+
+#El Mirador
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Mjc=&seguim=1841ce9e103ff3975eb97f74daaeda279697da56a57e4952fc715ccb313ea600'
+
+#El Parque
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjQ=&seguim=e4cdd5159a488892365a2c338b8f66b2a5ee6ba66dea19467b76f27c8f998615'
+
+#El Tintal Manuel Zapata Olivella
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Mw==&seguim=ddd251da5252f1486f563d476b9cdf0ca23e80bf854d833b0a90dfd3a2779e1d'
+
+#Especializada en Historia Politica
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MzM=&seguim=7daecf3a2ded128c491e4ffeaa554e9500c69fcd54d313afe8806ba21da92c6e'
+
+#Gabriel Garcia Marquez
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MQ==&seguim=8f5dc931d8c70fc87de6409f828a9e08fa3ec05bc1e2a262a4d07adf0893068b'
+
+#Julio Mario Santo Domingo
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=OA==&seguim=7e725d6544a07557a63cf22f8c6c6bba94e17481aa741ff6072d6961d1df54f0'
+
+#La Giralda
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTI=&seguim=7554ce8c7a2534fed436ce1f6262f934c98cd4e69b590ad0687bdaf0be34d3181'
+
+#La ParticipaciÃƒÂ³n
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Mjg=&seguim=f67c49a22513727221ac70fa79ecffc1f49d3c512fcf61a682cbbdc5d2edf207'
+
+#La PeÃƒÂ±a
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjA=&seguim=5a9b494738739f4922b26fc3a686d69b220dc63b057dcb33141c2f9f5f8c9c1d'
+
+#La Victoria
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=NQ==&seguim=a5da9800dd7889a28270e8ff92b6cc03a898f09787e82c5e757fbedf017ddd0f'
+
+#Lago Timiza
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTg=&seguim=733e699b375ed7e59330d4e9943b38c2f315d9e41281205572ca0809498a2014'
+
+#Las Ferias
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=OQ==&seguim=9caacffdb01dc3e88aaab1961b960037c77a0169793d85e1882fce5beaf444f0'
+
+#Marichuela
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjM=&seguim=550f6205a24b9febe2cab7ddb8f2e23d455e1233b4f21a70e1f55465b74f9ec9'
+
+#Pasquilla
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MjU=&seguim=185933e35f22da15d284d348ddac42435b32d1058ef962c1f8f177f4dc5f4858'
+
+#Perdomo Soledad Lamprea
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTc=&seguim=2bc99e494c19e8756f960d57f34976d0dff2734b478adab70230826eef12dc40'
+
+#Puente Aranda Nestor Forero AlcalÃƒÂ¡
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTQ=&seguim=76c4b7f75be07e605145be96088bea66f42a22b91e5c11806c25bf64be927f0d'
+
+#Rafael Uribe Uribe
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTU=&seguim=dde9f058e59355e65592f667b865074636619075cd0c73835dc9ce172a5c891e'
+
+#Suba - Francisco JosÃƒÂ© de Caldas
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Nw==&seguim=edee1c93a701db7815387ea2ce32ea81cd1c83dc9af2a768ec2871eddf188000'
+
+#Usaquen - Servita
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=Ng==&seguim=6f2f93227eeda337f65c49cf39237798cb14147ebb6ab370d5e46a4b431c1618'
+
+#Venecia Pablo de Tarso
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=MTY=&seguim=012766b86029383f22b0b8fb9fd7be23ada78a79ab50baf36f64b7d3072a8989'
+
+#Virgilio Barco
+#url_biblioteca='https://www.biblored.gov.co/afiliese-a-biblored?proceso=NA==&seguim=db98d503a070ebd8c4ba3629923b0861cc1f6f287032c960790d1b39d02a7f5e'
+
+
+# Bucle principal para abrir Chromium con mÃºltiples pestaÃ±as
+while true; do
+  # Abrir Chromium con las pÃ¡ginas especificadas en pestaÃ±as separadas
+  chromium \
+    --no-first-run \
+    --start-maximized \
+    --disable \
+    --disable-translate \
+    --disable-infobars \
+    --disable-suggestions-service \
+    --disable-save-password-bubble \
+    --disable-session-crashed-bubble \
+    --noerrdialogs \
+    --incognito \
+    --new-window "https://catalogo.biblored.gov.co" \
+    "https://descubridor.banrepcultural.org/discovery/search?vid=57BDLRDC_INST:57BDLRDC_INST" \
+    "$url_biblioteca" &
+
+  # Esperar a que Chromium se cierre
+  wait $!
+
+  # PequeÃ±a pausa antes de volver a abrir
+  sleep 2
+done
+
+# Bucle infinito que refresca la pantalla cada 15 minutos
+while true; do
+    # Refrescar la pantalla
+    xrefresh
+    # Esperar 15 minutos (900 segundos)
+    sleep 900
+done
+EOF
+
+# Permisos para el archivo autostart
+chmod +x /home/catalogo/.config/openbox/autostart
+chown catalogo:catalogo /home/catalogo/.config/openbox/autostart
+
+echo "Archivo de autostart configurado"
+
+# Configurar para que Openbox se inicie correctamente
+mkdir -p /home/catalogo/.xsession
+echo "exec openbox-session" > /home/catalogo/.xsession
+chown catalogo:catalogo /home/catalogo/.xsession
+
+# Limitar el uso de la terminal para el usuario catalogo
+#usermod -s /usr/sbin/nologin catalogo
+
+#descargar imagen de fondo de pantalla
+
+sudo usermod -aG sudo catalogo
+
+sudo /home/catalogo/fondo.sh
+
+# Reiniciar el sistema para aplicar los cambios
+echo "Reiniciando el sistema para aplicar los cambios..."
+reboot
