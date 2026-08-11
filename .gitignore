@@ -1,0 +1,7 @@
+# Documento fuente del CV (contiene datos personales) - no subirlo
+*.pdf
+
+# Datos de respaldo y temporales
+*.log
+.DS_Store
+Thumbs.db

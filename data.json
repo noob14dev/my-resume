@@ -1,0 +1,110 @@
+{
+  "nombre": "Juan Camilo Larrota Ruiz",
+  "rol": "Desarrollador",
+  "perfil": "Transformo problemas en soluciones. Con formación en Ingeniería Telemática y experiencia en desarrollo web, automatización de procesos y consultoría de experiencia de cliente, hoy me desempeño en Oracle CX (ImagineCX). Trabajo con metodologías ágiles, buenas prácticas y herramientas como Git, Docker, Linux y SQL. Apunto a crecer en desarrollo backend, full stack o DevOps, donde la automatización y la solidez técnica marcan la diferencia.",
+  "ubicacion": ["Bogotá, Colombia", "Remoto · Híbrido · Presencial"],
+  "contacto": [
+    { "tipo": "Email", "valor": "jclarrotar@gmail.com", "link": "mailto:jclarrotar@gmail.com" },
+    { "tipo": "LinkedIn", "valor": "linkedin.com/in/juanclarrota", "link": "https://linkedin.com/in/juanclarrota" },
+    { "tipo": "GitHub", "valor": "github.com/noob14dev", "link": "https://github.com/noob14dev" }
+  ],
+  "educacion": [
+    {
+      "titulo": "Ingeniería Telemática — Universidad Distrital Francisco José de Caldas",
+      "meta": "Graduado · 2026"
+    },
+    {
+      "titulo": "Tecnólogo en Sistematización de Datos — Universidad Distrital Francisco José de Caldas",
+      "meta": "2022"
+    },
+    {
+      "titulo": "Diplomado Tecnologías Web — Universidad de Caldas · MinTIC (MisiónTIC 2022)",
+      "meta": "2022"
+    },
+    {
+      "titulo": "Cursos complementarios — Udemy · Platzi",
+      "meta": "2021",
+      "extra": "Scrum Master, Master JavaScript, SQL, Introducción a la Terminal, Python intermedio, Curso profesional de Git y GitHub"
+    }
+  ],
+  "experiencia": [
+    {
+      "cargo": "Consultor CX (Oracle Consulting)",
+      "empresa": "ImagineCX",
+      "meta": "Dic. 2025 — Actualidad",
+      "detalle": "Consultoría y soporte en proyectos de experiencia de cliente (CX) sobre plataformas Oracle CX. Configuración, análisis de requerimientos, documentación de soluciones y atención al cliente."
+    },
+    {
+      "cargo": "Técnico TIC - Desarrollo",
+      "empresa": "Biblored — Bogotá",
+      "meta": "Abr. 2023 — Nov. 2025",
+      "detalle": "Desarrollo y mantenimiento de soluciones web internas y automatización de procesos con PHP y JavaScript. Soporte técnico a usuarios en múltiples sedes."
+    },
+    {
+      "cargo": "Monitor - Laboratorista de Informática",
+      "empresa": "Universidad Distrital Francisco José de Caldas",
+      "meta": "Ene. 2022 — Ago. 2022",
+      "detalle": "Mantenimiento y administración de servidores Linux y bases de datos SQL. Apoyo en laboratorios de programación y redes."
+    },
+    {
+      "cargo": "Aux. Ingeniería",
+      "empresa": "Carvajal Soluciones de Comunicación",
+      "meta": "Abr. 2021 — Jul. 2021",
+      "detalle": "Apoyo en pruebas técnicas y control de calidad de productos. Registro y documentación de información técnica."
+    },
+    {
+      "cargo": "Practicante",
+      "empresa": "Carvajal Soluciones de Comunicación",
+      "meta": "Sep. 2020 — Mar. 2021",
+      "detalle": "Desarrollo en C# para la gestión interna y generación de documentos. Manejo, monitoreo y soporte de servidores."
+    }
+  ],
+  "habilidades": {
+    "Lenguajes y Web": [
+      "HTML y CSS",
+      "JavaScript",
+      "C#",
+      "PHP",
+      "Python"
+    ],
+    "Herramientas y Plataformas": [
+      "Git & GitHub",
+      "Docker",
+      "Terminal Unix / Linux",
+      "Bases de datos relacionales (SQL)"
+    ],
+    "Metodologías": [
+      "Scrum (metodología ágil)"
+    ]
+  },
+  "idiomas": [
+    { "idioma": "Español", "nivel": "Nativo" },
+    { "idioma": "Inglés", "nivel": "Básico A2" }
+  ],
+  "proyectos": [
+    {
+      "nombre": "myLibrary",
+      "tech": "Next.js · TypeScript · Prisma · SQL",
+      "detalle": "Aplicación web para gestionar una biblioteca personal de libros físicos y digitales.",
+      "link": "https://github.com/noob14dev/myLibrary"
+    },
+    {
+      "nombre": "dm_helper",
+      "tech": "TypeScript · APIs · Arquitectura de software",
+      "detalle": "Asistente modular para dirigir partidas de rol (D&D, Call of Cthulhu, etc.). Módulo de dados con 19 tests unitarios.",
+      "link": "https://github.com/noob14dev/dm_helper"
+    }
+  ],
+  "referencias": [
+    {
+      "nombre": "Andrés Olaya",
+      "cargo": "Banco Falabella",
+      "linkedin": "https://www.linkedin.com/in/andres-olaya/"
+    },
+    {
+      "nombre": "Daniel Pulgarín",
+      "cargo": "Infinite Computer Solutions",
+      "linkedin": "https://www.linkedin.com/in/daniel-alejandro-pulgarin-cruz/"
+    }
+  ]
+}
