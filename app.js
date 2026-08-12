@@ -1,7 +1,7 @@
 var FALLBACK_DATA = {
   "nombre": "Juan Camilo Larrota Ruiz",
-  "rol": "Desarrollador",
-  "perfil": "Transformo problemas en soluciones. Con formación en Ingeniería Telemática y experiencia en desarrollo web, automatización de procesos y consultoría de experiencia de cliente, hoy me desempeño en Oracle CX (ImagineCX). Trabajo con metodologías ágiles, buenas prácticas y herramientas como Git, Docker, Linux y SQL. Apunto a crecer en desarrollo backend, full stack o DevOps, donde la automatización y la solidez técnica marcan la diferencia.",
+  "rol": "Ingeniero Telemático · Desarrollador de Software / DevOps",
+  "perfil": "Desarrollador de software con experiencia en todo el ciclo de vida de aplicaciones: desarrollo full-stack, scripting y automatización, administración de servidores Linux, bases de datos y redes corporativas. Actualmente desarrollo lógica de negocio y soluciones sobre la plataforma Oracle CX (Groovy Scripting, Visual Builder Studio, Redwood). Enfocado en resolver problemas complejos con soluciones técnicas estables, escalables y de alto valor, aplicando metodologías ágiles.",
   "ubicacion": ["Bogotá, Colombia", "Remoto · Híbrido · Presencial"],
   "contacto": [
     { "tipo": "Email", "valor": "jclarrotar@gmail.com", "link": "mailto:jclarrotar@gmail.com" },
@@ -9,36 +9,31 @@ var FALLBACK_DATA = {
     { "tipo": "GitHub", "valor": "github.com/noob14dev", "link": "https://github.com/noob14dev" }
   ],
   "educacion": [
-    { "titulo": "Ingeniería Telemática — Universidad Distrital Francisco José de Caldas", "meta": "Graduado · 2026" },
+    { "titulo": "Ingeniería Telemática — Universidad Distrital Francisco José de Caldas", "meta": "Título profesional · 2026" },
     { "titulo": "Tecnólogo en Sistematización de Datos — Universidad Distrital Francisco José de Caldas", "meta": "2022" },
-    { "titulo": "Diplomado Tecnologías Web — Universidad de Caldas · MinTIC (MisiónTIC 2022)", "meta": "2022" },
+    { "titulo": "Diplomado en Desarrollo de Software — MinTIC", "meta": "2022" },
     { "titulo": "Cursos complementarios — Udemy · Platzi", "meta": "2021", "extra": "Scrum Master, Master JavaScript, SQL, Introducción a la Terminal, Python intermedio, Curso profesional de Git y GitHub" }
   ],
   "experiencia": [
-    { "cargo": "Consultor CX (Oracle Consulting)", "empresa": "ImagineCX", "meta": "Dic. 2025 — Actualidad", "detalle": "Consultoría y soporte en proyectos de experiencia de cliente (CX) sobre plataformas Oracle CX. Configuración, análisis de requerimientos, documentación de soluciones y atención al cliente." },
-    { "cargo": "Técnico TIC - Desarrollo", "empresa": "Biblored — Bogotá", "meta": "Abr. 2023 — Nov. 2025", "detalle": "Desarrollo y mantenimiento de soluciones web internas y automatización de procesos con PHP y JavaScript. Soporte técnico a usuarios en múltiples sedes." },
-    { "cargo": "Monitor - Laboratorista de Informática", "empresa": "Universidad Distrital Francisco José de Caldas", "meta": "Ene. 2022 — Ago. 2022", "detalle": "Mantenimiento y administración de servidores Linux y bases de datos SQL. Apoyo en laboratorios de programación y redes." },
-    { "cargo": "Aux. Ingeniería", "empresa": "Carvajal Soluciones de Comunicación", "meta": "Abr. 2021 — Jul. 2021", "detalle": "Apoyo en pruebas técnicas y control de calidad de productos. Registro y documentación de información técnica." },
-    { "cargo": "Practicante", "empresa": "Carvajal Soluciones de Comunicación", "meta": "Sep. 2020 — Mar. 2021", "detalle": "Desarrollo en C# para la gestión interna y generación de documentos. Manejo, monitoreo y soporte de servidores." }
+    { "cargo": "Desarrollador Oracle CX", "empresa": "ImagineCX", "meta": "Dic. 2025 — Actualidad", "detalle": "Desarrollo de lógica de negocio y extensiones con Groovy Scripting y Visual Builder Studio (VBS). Implementación de interfaces modernas con Oracle JET y Redwood. Estimación de proyectos y documentación técnica." },
+    { "cargo": "Técnico TIC - Desarrollo", "empresa": "BibloRed · Proyectamos Colombia / UT Bogotá Lectora", "meta": "Abr. 2023 — Jun. 2025", "detalle": "Desarrollo de una imagen personalizada en Debian para el catálogo de la red. Administración de bases de datos bibliográficas y sistemas de información (Sinbad, Moodle, GLPI). Gestión de infraestructura, backups y monitoreo de servidores." },
+    { "cargo": "Monitor de Laboratorio de Informática", "empresa": "Universidad Distrital Francisco José de Caldas", "meta": "2022-1", "detalle": "Administración de servidores Linux y bases de datos del laboratorio. Mantenimiento preventivo de la infraestructura de cómputo." },
+    { "cargo": "Auxiliar de Ingeniería", "empresa": "Carvajal Soluciones de Comunicación S.A.S.", "meta": "Abr. 2020 — Jul. 2020", "detalle": "Procesamiento y análisis de datos para clientes, asegurando la integridad de las bases de datos. Apoyo en la implementación de proyectos de ingeniería." },
+    { "cargo": "Aprendiz SENA - Tecnología", "empresa": "Carvajal Soluciones de Comunicación S.A.S.", "meta": "Sep. 2019 — Mar. 2020", "detalle": "Desarrollo de software con C# para el área de Ingeniería. Monitoreo de servidores, gestión de redes y validación de rutinas de backup." }
   ],
-  "habilidades": {
-    "Lenguajes y Web": [
-      "HTML y CSS",
-      "JavaScript",
+  "habilidades": [
       "C#",
+      "JavaScript / TypeScript",
       "PHP",
-      "Python"
-    ],
-    "Herramientas y Plataformas": [
-      "Git & GitHub",
+      "Python",
+      "Groovy Scripting",
+      "SQL y administración de bases de datos",
+      "Linux / Debian",
       "Docker",
-      "Terminal Unix / Linux",
-      "Bases de datos relacionales (SQL)"
+      "Git & GitHub",
+      "Oracle CX / Redwood / Visual Builder Studio",
+      "Scrum"
     ],
-    "Metodologías": [
-      "Scrum (metodología ágil)"
-    ]
-  },
   "idiomas": [
     { "idioma": "Español", "nivel": "Nativo" },
     { "idioma": "Inglés", "nivel": "Básico A2" }
@@ -99,17 +94,10 @@ var FALLBACK_DATA = {
       .join("");
   }
 
-  function habilidadHTML(hab) {
-    return Object.keys(hab)
-      .map(function (grupo) {
-        var items = hab[grupo]
-          .map(function (skill) {
-            return '<li class="chip">' + escapeHTML(skill) + "</li>";
-          })
-          .join("");
-        return (
-          '<div class="skill-grupo"><h3>' + grupo + "</h3><ul>" + items + "</ul></div>"
-        );
+  function habilidadHTML(lista) {
+    return lista
+      .map(function (skill) {
+        return '<li class="chip">' + escapeHTML(skill) + "</li>";
       })
       .join("");
   }
@@ -166,28 +154,6 @@ var FALLBACK_DATA = {
       .join("");
   }
 
-  function proyectosHTML(lista) {
-    return lista
-      .map(function (p) {
-        return (
-          "<article class=\"sec-item\">" +
-            '<div class="item-head">' +
-              '<span class="badge"></span>' +
-              '<div class="item-body"><h3><a href="' + p.link + '" target="_blank" rel="noopener">' +
-              escapeHTML(p.nombre) + "</a></h3>" +
-              '<p class="meta">' +
-              escapeHTML(p.tech) +
-              "</p></div>" +
-            "</div>" +
-            "<p class=\"item-detalle-txt\">" +
-            escapeHTML(p.detalle) +
-            "</p>" +
-          "</article>"
-        );
-      })
-      .join("");
-  }
-
   function referenciasHTML(lista) {
     return lista
       .map(function (r) {
@@ -196,6 +162,18 @@ var FALLBACK_DATA = {
           "<h3>" + escapeHTML(r.nombre) + "</h3>" +
           '<p class="empresa">' + escapeHTML(r.cargo) + "</p>" +
           '<a class="linkedin" href="' + r.linkedin + '" target="_blank" rel="noopener">LinkedIn</a>' +
+          "</article>"
+        );
+      })
+      .join("");
+  }
+
+  function proyectosSidebarHTML(lista) {
+    return lista
+      .map(function (p) {
+        return (
+          "<article class=\"ref\">" +
+          '<h3><a class="linkedin" href="' + p.link + '" target="_blank" rel="noopener">' + escapeHTML(p.nombre) + "</a></h3>" +
           "</article>"
         );
       })
@@ -223,9 +201,9 @@ var FALLBACK_DATA = {
             contactoHTML(data.contacto) +
           "</ul></section>" +
 
-          '<section class="bloque"><h2>Habilidades</h2>' +
+          '<section class="bloque"><h2>Habilidades</h2><ul class="skill-grupo">' +
             habilidadHTML(data.habilidades) +
-          "</section>" +
+          "</ul></section>" +
 
           '<section class="bloque"><h2>Idiomas</h2><ul class="idiomas">' +
             idiomasHTML(data.idiomas) +
@@ -233,6 +211,10 @@ var FALLBACK_DATA = {
 
           '<section class="bloque"><h2>Referencias</h2>' +
             referenciasHTML(data.referencias) +
+          "</section>" +
+
+          '<section class="bloque"><h2>Proyectos</h2>' +
+            proyectosSidebarHTML(data.proyectos) +
           "</section>" +
         "</aside>" +
 
@@ -250,11 +232,6 @@ var FALLBACK_DATA = {
           '<details class="seccion-colapsable" open>' +
             '<summary class="seccion-sum"><span class="seccion-titulo">Educación</span><span class="chevron"></span></summary>' +
             educacionHTML(data.educacion) +
-          "</details>" +
-
-          '<details class="seccion-colapsable" open>' +
-            '<summary class="seccion-sum"><span class="seccion-titulo">Proyectos</span><span class="chevron"></span></summary>' +
-            proyectosHTML(data.proyectos) +
           "</details>" +
 
         "</main>" +

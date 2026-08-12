@@ -130,28 +130,21 @@ body {
 }
 
 .skill-grupo {
-  margin-bottom: 1rem;
-}
-
-.skill-grupo h3 {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-bottom: 0.45rem;
-}
-
-.skill-grupo ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   list-style: none;
+  margin-bottom: 1rem;
 }
 
 .chip {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.28rem 0.8rem;
   border-radius: 999px;
   font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--blanco);
 }
 
 .idiomas {
